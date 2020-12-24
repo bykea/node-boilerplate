@@ -1,31 +1,9 @@
 version: '3'
 
 services:
-    web:
-        build:
-            context: .
-        environment:
-            - NODE_ENV=development
-            - staging=true
-            - PORT=3000
-        command: npm start
-        volumes:
-            - .:/myapp
-        ports:
-            - "0.0.0.0:7777:3000"
-        networks:
-            - acm-network
-        # links:
-        #     - pgsql
-        #     - redis
-        depends_on:
-            - pgsql
-            - redis
     admin:
         image: adminer
         restart: always
-        depends_on: 
-            - web
         ports:
             - "0.0.0.0:7780:8080"
     pgsql:
