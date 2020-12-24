@@ -20,7 +20,10 @@ MIT
 
 **Quick start**
 
+    gh repo clone bykea/node-boilerplate
+    npm install
     npm run my-local
+    
 
 
 
