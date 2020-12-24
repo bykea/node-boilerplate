@@ -1,0 +1,77 @@
+{
+  "name": "bykea_node_boilerplate",
+  "version": "1.0.0",
+  "description": "Bykea Node Boilerplate",
+  "main": "server.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "my-debug": "node server.js --benv debug | pino-pretty",
+    "my-local": "node server.js --benv local | pino-pretty",
+    "my-development": "node server.js --benv development | pino-pretty",
+    "my-staging": "node server.js --benv staging | pino-pretty",
+    "my-production": "node server.js --benv production | pino-pretty",
+    "test:services:user": "jest -i services/__tests__/users.js -t \"users service test\"",
+    "lint": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
+    "fix": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" --fix .",
+    "db-version": "node src/tools/db.js version --env local",
+    "db-migrate": "node src/tools/db.js migrate --env local",
+    "db-seed": "node src/tools/db.js seed --env local",
+    "setup": "node src/tools/setup.js --env local",
+    "compile-debug": "pkg server.js -c package.json -t x64 -d --output compiled-package-debug",
+    "compile": "pkg server.js -c package.json -t x64 --output compiled-package"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --no-ignore --fix",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/utils/jest.setup.js"
+    ]
+  },
+  "pkg": {
+    "assets": [
+      "src/**/*"
+    ]
+  },
+  "author": "amustafa",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
+    "async-redis": "^1.1.7",
+    "awilix": "^4.2.1",
+    "bluebird": "^3.5.3",
+    "fastify": "^3.2.1",
+    "fastify-boom": "^0.1.0",
+    "fastify-cors": "^4.1.0",
+    "fastify-helmet": "^5.0.0",
+    "fastify-jwt": "^0.9.6",
+    "fastify-plugin": "^1.5.0",
+    "fastify-url-data": "^3.0.3",
+    "fluent-schema": "^0.7.0",
+    "generate-schema": "^2.6.0",
+    "ioredis": "^4.17.3",
+    "joi-objectid": "^3.0.1",
+    "lodash": "^4.17.20",
+    "nconf": "^0.10.0",
+    "pg-monitor": "^1.4.1",
+    "pg-promise": "^10.5.8",
+    "pino": "^5.12.0",
+    "pino-elasticsearch": "^3.1.0",
+    "pino-pretty": "^2.6.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "lint-staged": "^8.1.5"
+  }
+}

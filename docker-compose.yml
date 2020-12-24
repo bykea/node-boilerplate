@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+    web:
+        build:
+            context: .
+        environment:
+            - NODE_ENV=development
+            - staging=true
+            - PORT=3000
+        command: npm start
+        volumes:
+            - .:/myapp
+        ports:
+            - "0.0.0.0:7777:3000"
+        networks:
+            - acm-network
+        # links:
+        #     - pgsql
+        #     - redis
+        depends_on:
+            - pgsql
+            - redis
+    admin:
+        image: adminer
+        restart: always
+        depends_on: 
+            - web
+        ports:
+            - "0.0.0.0:7780:8080"
+    pgsql:
+        image: postgres:9.6.6-alpine
+        tmpfs:
+          - /tmp
+          - /var/run/postgresql
+        volumes:
+          - ./db:/var/lib/postgresql/data
+          - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+        ports:
+          - "0.0.0.0:7778:5432"
+        networks:
+            - acm-network
+        environment:
+            POSTGRES_USER: docker
+            POSTGRES_PASSWORD: docker
+            POSTGRES_DB: bykea_acm
+    redis:
+        image: redis:latest
+        user: redis
+        networks:
+            - acm-network
+        ports:
+          - "0.0.0.0:7779:6379"
+
+networks:
+    acm-network:
+        driver: bridge
