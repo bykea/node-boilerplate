@@ -1,0 +1,59 @@
+{
+    "environment": "development",
+    "app": {
+        "domain": "localhost",
+        "cookie_domain": "localhost"
+    },
+    "server": {
+        "version": "1.0",
+        "name": "Bykea_Boilerplate",
+        "host": "0.0.0.0",
+        "port": 3000,
+        "ssl": false,
+        "api_prefix": "/v1"
+    },
+    "fastify": {
+        "log_level": 10
+    },
+    "jwt": {
+        "secret": "9e06765b-93bc-4e07-bc59-2e666a51bb0b"
+    },
+    "database": {
+        "pgsql": {
+            "host": "localhost",
+            "port": 7778,
+            "database": "bykea_acm",
+            "user": "docker",
+            "password": "docker"
+        }
+    },
+    "cache": {
+        "redis": {
+            "host": "127.0.0.1",
+            "port": 7779
+        }
+    },
+    "queues": {
+        "rabbitmq": {
+            "host": "localhost",
+            "username": "admin",
+            "password": "admin",
+            "port": 5672
+        }
+    },
+    "encryption": {
+        "hashing": {
+            "saltBytes": 16,
+            "rounds": 1000,
+            "length": 64,
+            "algo": "sha512"
+        },
+        "aes":{
+            "key": "C1GKh@l33fF@nt@s",
+            "key_second": "C1GKh@l33fF@nt@a",
+            "algorithm": "aes-128-ecb",
+            "cipherEncoding": "base64",
+            "messageEncoding": "utf8"
+        }
+    }
+}
