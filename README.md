@@ -6,6 +6,15 @@ NodeJs Boilerplate is an efficient boilerplate or bootstrap framework for node.j
 
 NodeJs Boilerplate is an efficient boilerplate or bootstrap framework for node.js. Try NodeJs Boilerplate and enhance your project's performance.
 
+# Unit test cases
+
+## Setup
+
+> npm install jest --save-dev
+
+## Running
+
+> npm run test:unit
 
 **Motivation**
 
