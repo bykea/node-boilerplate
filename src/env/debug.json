@@ -49,8 +49,7 @@
             "algo": "sha512"
         },
         "aes":{
-            "key": "C1GKh@l33fF@nt@s",
-            "key_second": "C1GKh@l33fF@nt@a",
+            "key": "supersecret!!!!",
             "algorithm": "aes-128-ecb",
             "cipherEncoding": "base64",
             "messageEncoding": "utf8"
